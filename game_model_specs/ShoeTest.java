@@ -17,8 +17,8 @@ public class ShoeTest {
   }
 
   @Test
-  public void canGetCardByIndex() {
-    assertEquals(Suit.CLUBS, shoe.getCardByIndex(16).getSuit());
+  public void canGetFirstCard() {
+    assertEquals(Suit.HEARTS, shoe.getFirstCard().getSuit());
   }
 
   @Test

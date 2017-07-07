@@ -12,4 +12,9 @@ public class Dealer extends Participant {
   public Shoe getShoe() {
     return this.shoe;
   }
+
+  // public void deal(Player player) {
+  //   this.shoe.shuffle();
+  //   this.shoe.getFirstCard()
+  // }
 }
