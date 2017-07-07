@@ -1,5 +1,5 @@
 package game_models;
-import java.util.ArrayList;
+
 
 public class Participant {
   protected String name;
