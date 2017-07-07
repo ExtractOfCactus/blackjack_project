@@ -19,4 +19,9 @@ public class DealerTest {
   public void dealerHasHand() {
     assertEquals(0, dealer.getHand().size());
   }
+
+  @Test
+  public void dealerHasShoe() {
+    assertEquals(52, dealer.getShoe().size());
+  }
 }
