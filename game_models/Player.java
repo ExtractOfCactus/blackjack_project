@@ -1,12 +1,9 @@
 package game_models;
 import java.util.ArrayList;
 
-public class Player {
-  private String name;
-  private ArrayList<Card> hand;
+public class Player extends Participant {
 
   public Player(String name) {
-    this.name = name;
-    this.hand = new ArrayList<Card>();
+    super(name);
   }
 }

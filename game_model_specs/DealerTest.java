@@ -3,10 +3,10 @@
 // import game_models.*;
 
 // public class DealerTest {
-  // Dealer dealer;
+//   Dealer dealer;
 
-  // @Before
-  // public void before() {
-    
-  // }
+//   @Before
+//   public void before() {
+//     dealer = new Dealer("Dealer");
+//   }
 // }
