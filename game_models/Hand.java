@@ -8,6 +8,10 @@ public class Hand {
     this.cards = new ArrayList<Card>();
   }
 
+  public ArrayList getCards() {
+    return this.cards;
+  }
+
   public int size() {
     return this.cards.size();
   }

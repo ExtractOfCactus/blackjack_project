@@ -16,6 +16,11 @@ public class HandTest {
   }
 
   @Test
+  public void canGetCards() {
+    assertEquals(0, hand.getCards().size());
+  }
+
+  @Test
   public void handStartsEmpty() {
     assertEquals(0, hand.size());
   }

@@ -1,5 +1,6 @@
 package game_models;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Dealer extends Participant {
   Shoe shoe;
@@ -14,9 +15,11 @@ public class Dealer extends Participant {
   }
 
   // public void deal(Player player) {
-  //   this.shoe.getDeck().shuffle();
-  //   // this.shoe.getFirstCard()
-  //   player.getHand().add(this.shoe.getFirstCard());
+  //   ArrayList deck = this.shoe.getDeck();
+  //   Collections.shuffle(deck);
+
+  //   Card card = this.shoe.getFirstCard();
+  //   player.getHand().addCard(card);
   //   this.shoe.remove(0);
   // }
 }

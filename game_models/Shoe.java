@@ -40,4 +40,5 @@ public class Shoe {
     this.deck.clear();
     this.setUpDeck();
   }
+
 }

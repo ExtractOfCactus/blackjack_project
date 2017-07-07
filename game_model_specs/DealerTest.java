@@ -32,5 +32,6 @@ public class DealerTest {
   //   dealer.deal(player);
   //   assertEquals(51, dealer.getShoe().size());
   //   assertEquals(1, player.getHand().size());
+  //   assertEquals(player.getHand.get)
   // }
 }
