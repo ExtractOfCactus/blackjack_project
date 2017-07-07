@@ -14,4 +14,9 @@ public class DealerTest {
   public void dealerHasName() {
     assertEquals("Dealer", dealer.getName());
   }
+
+  @Test
+  public void dealerHasHand() {
+    assertEquals(0, dealer.getHand().size());
+  }
 }
