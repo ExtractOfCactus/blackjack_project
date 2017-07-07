@@ -12,8 +12,8 @@ public class Shoe {
   }
 
   public void setUpDeck() {
-    for (Rank rank : Rank.values()) {
-      for (Suit suit : Suit.values()) {
+    for (Suit suit : Suit.values()) {
+      for (Rank rank : Rank.values()) {
         Card card = new Card(rank, suit);
         this.deck.add(card);
       }
@@ -23,4 +23,8 @@ public class Shoe {
   public int size() {
     return this.deck.size();
   }
+
+  public Card getCardByIndex(int index) {
+    return this.deck.get(index);
+  } 
 }
