@@ -31,4 +31,9 @@ public class Shoe {
   public void remove(int index) {
     this.deck.remove(index);
   }
+
+  public void newShoe() {
+    this.deck.clear();
+    this.setUpDeck();
+  }
 }

@@ -26,4 +26,13 @@ public class ShoeTest {
     shoe.remove(1);
     assertEquals(51, shoe.size());
   }
+
+  @Test
+  public void canResetShoe() {
+    shoe.remove(1);
+    shoe.remove(3);
+    shoe.remove(8);
+    shoe.newShoe();
+    assertEquals(52, shoe.size());
+  }
 }
