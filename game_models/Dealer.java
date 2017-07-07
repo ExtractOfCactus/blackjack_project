@@ -14,7 +14,9 @@ public class Dealer extends Participant {
   }
 
   // public void deal(Player player) {
-  //   this.shoe.shuffle();
-  //   this.shoe.getFirstCard()
+  //   this.shoe.getDeck().shuffle();
+  //   // this.shoe.getFirstCard()
+  //   player.getHand().add(this.shoe.getFirstCard());
+  //   this.shoe.remove(0);
   // }
 }

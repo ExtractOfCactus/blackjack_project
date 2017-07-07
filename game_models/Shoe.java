@@ -20,6 +20,10 @@ public class Shoe {
     }
   }
 
+  public ArrayList getDeck() {
+    return this.deck;
+  }
+
   public int size() {
     return this.deck.size();
   }

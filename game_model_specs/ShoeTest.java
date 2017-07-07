@@ -12,6 +12,11 @@ public class ShoeTest {
   }
 
   @Test
+  public void canGetDeck() {
+    assertEquals(52, shoe.getDeck().size());
+  }
+
+  @Test
   public void shoeHasCards() {
     assertEquals(52, shoe.size());
   }
