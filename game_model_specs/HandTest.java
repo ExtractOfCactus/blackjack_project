@@ -19,4 +19,10 @@ public class HandTest {
   public void handStartsEmpty() {
     assertEquals(0, hand.size());
   }
+
+  @Test
+  public void canAddCardToHand() {
+    hand.addCard(card1);
+    assertEquals(1, hand.size());
+  }
 }

@@ -11,4 +11,8 @@ public class Hand {
   public int size() {
     return this.cards.size();
   }
+
+  public void addCard(Card card) {
+    this.cards.add(card);
+  }
 }
