@@ -15,4 +15,8 @@ public class Hand {
   public void addCard(Card card) {
     this.cards.add(card);
   }
+
+  public void reset() {
+    this.cards = new ArrayList<Card>();
+  }
 }

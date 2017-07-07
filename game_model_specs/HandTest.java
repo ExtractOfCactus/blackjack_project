@@ -25,4 +25,12 @@ public class HandTest {
     hand.addCard(card1);
     assertEquals(1, hand.size());
   }
+
+  @Test
+  public void handCanBeEmptied() {
+    hand.addCard(card1);
+    hand.addCard(card2);
+    hand.reset();
+    assertEquals(0, hand.size());
+  }
 }
