@@ -1,10 +1,17 @@
 package game_models;
+import enums.*;
 
 public class Card {
-  private String suit;
-  private int value;
+  private Rank rank;
+  private Suit suit;
 
-  public Card(String suit, int value) {
-      this.suit = suit;
-      this.value = value;
+  public Card(Rank rank, Suit suit) {
+    this.rank = rank;
+    this.suit = suit;
   }
+
+  public Suit getSuit() {
+    return this.suit;
+  }
+
+}

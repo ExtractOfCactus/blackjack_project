@@ -7,5 +7,6 @@ public class Shoe {
 
   public Shoe() {
     this.deck = new ArrayList<Card>();
-    this.setupDeck();
+    // this.setupDeck();
   }
+}
