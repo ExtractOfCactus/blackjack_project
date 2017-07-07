@@ -14,4 +14,9 @@ public class PlayerTest {
   public void playerHasName() {
     assertEquals("Glen", player.getName());
   }
+
+  @Test
+  public void playerHasHand() {
+    assertEquals(0, player.getHand().size());
+  }
 }

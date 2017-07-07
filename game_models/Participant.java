@@ -3,15 +3,19 @@ import java.util.ArrayList;
 
 public class Participant {
   protected String name;
-  protected ArrayList<Card> hand;
+  protected Hand hand;
 
   public Participant(String name) {
     this.name = name;
-    this.hand = new ArrayList<Card>();
+    this.hand = new Hand();
   }
 
   public String getName() {
     return this.name;
+  }
+
+  public Hand getHand() {
+    return this.hand;
   }
 
 
