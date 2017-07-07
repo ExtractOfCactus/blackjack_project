@@ -27,11 +27,14 @@ public class DealerTest {
     assertEquals(52, dealer.getShoe().size());
   }
 
-  // @Test
-  // public void dealerCanDeal() {
-  //   dealer.deal(player);
-  //   assertEquals(51, dealer.getShoe().size());
-  //   assertEquals(1, player.getHand().size());
-  //   assertEquals(player.getHand.get)
-  // }
+  @Test
+  public void dealerCanDeal() {
+    Card card2 = dealer.getShoe().getDeck().get(0);
+    dealer.deal(player);
+    Card card1 = player.getHand().getCards().get(0);
+
+    assertEquals(51, dealer.getShoe().size());
+    assertEquals(1, player.getHand().size());
+    assertEquals(card1, card2);
+  }
 }

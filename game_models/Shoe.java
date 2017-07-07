@@ -20,7 +20,7 @@ public class Shoe {
     }
   }
 
-  public ArrayList getDeck() {
+  public ArrayList<Card> getDeck() {
     return this.deck;
   }
 

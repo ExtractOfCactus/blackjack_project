@@ -14,12 +14,10 @@ public class Dealer extends Participant {
     return this.shoe;
   }
 
-  // public void deal(Player player) {
-  //   ArrayList deck = this.shoe.getDeck();
-  //   Collections.shuffle(deck);
-
-  //   Card card = this.shoe.getFirstCard();
-  //   player.getHand().addCard(card);
-  //   this.shoe.remove(0);
-  // }
+  public void deal(Player player) {
+    ArrayList deck = this.shoe.getDeck();
+    Card card = this.shoe.getFirstCard();
+    player.getHand().addCard(card);
+    this.shoe.remove(0);
+  }
 }
