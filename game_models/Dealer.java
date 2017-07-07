@@ -15,9 +15,14 @@ public class Dealer extends Participant {
   }
 
   public void deal(Player player) {
-    ArrayList deck = this.shoe.getDeck();
     Card card = this.shoe.getFirstCard();
     player.getHand().addCard(card);
+    this.shoe.remove(0);
+  }
+
+  public void deal() {
+    Card card = this.shoe.getFirstCard();
+    this.hand.addCard(card);
     this.shoe.remove(0);
   }
 }
