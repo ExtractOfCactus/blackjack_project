@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import enums.*;
 
 public class Shoe {
-  ArrayList<Card> deck;
+  private ArrayList<Card> deck;
  
 
   public Shoe() {

@@ -1,11 +1,19 @@
 package game_models;
 import java.util.ArrayList;
+import enums.*;
 
 public class Game {
-  ArrayList<Player> players;
-  Shoe shoe;
+  private ArrayList<Player> players;
+  private Dealer dealer;
 
-  public Game(Shoe shoe) {
-    this.shoe = shoe;
+  public Game() {
+    this.players = new ArrayList<Player>();
+    this.dealer = new Dealer("Kev the Dealer");
+    // this.setUpRankValues();
   }
+
+
+  // public int
+
+
 }

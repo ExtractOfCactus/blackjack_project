@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Dealer extends Participant {
-  Shoe shoe;
+  private Shoe shoe;
 
   public Dealer(String name) {
     super(name);
