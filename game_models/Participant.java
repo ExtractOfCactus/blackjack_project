@@ -10,5 +10,9 @@ public class Participant {
     this.hand = new ArrayList<Card>();
   }
 
+  public String getName() {
+    return this.name;
+  }
+
 
 }
