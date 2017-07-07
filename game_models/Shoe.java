@@ -27,4 +27,8 @@ public class Shoe {
   public Card getCardByIndex(int index) {
     return this.deck.get(index);
   } 
+
+  public void remove(int index) {
+    this.deck.remove(index);
+  }
 }
