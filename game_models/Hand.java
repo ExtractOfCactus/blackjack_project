@@ -7,4 +7,8 @@ public class Hand {
   public Hand() {
     this.cards = new ArrayList<Card>();
   }
+
+  public int size() {
+    return this.cards.size();
+  }
 }
