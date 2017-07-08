@@ -30,7 +30,7 @@ public class Game {
     }
   }
 
-  public void startGame() {
+  public void initialDeal() {
     dealRound();
     this.dealer.deal();
     dealRound();

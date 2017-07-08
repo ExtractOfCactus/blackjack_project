@@ -18,4 +18,8 @@ public class Card {
     return this.rank;
   }
 
+  public int value() {
+    return this.rank.getValue();
+  }
+
 }

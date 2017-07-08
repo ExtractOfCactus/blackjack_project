@@ -31,13 +31,15 @@ public class GameTest {
   @Test
   public void canStartGame() {
     game.addPlayer(player1);
-    game.startGame();
+    game.initialDeal();
     assertEquals(2, player1.handSize());
     assertEquals(2, game.getDealer().handSize());
   }
 
   // @Test
   // public void canCompareHands() {
-
+  //   game.addPlayer(player1);
+  //   game.initialDeal();
+    
   // }
 }
