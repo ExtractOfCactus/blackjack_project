@@ -23,4 +23,12 @@ public class Hand {
   public void reset() {
     this.cards = new ArrayList<Card>();
   }
+
+  public int handTotal() {
+    int total = 0;
+    for (Card card : cards) {
+      total += card.value();
+    }
+    return total;
+  }
 }
