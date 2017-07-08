@@ -28,13 +28,13 @@ public class GameTest {
     assertEquals("Dealer", game.getDealer().getName());
   }
 
-  // @Test
-  // public void canStartGame() {
-  //   game.addPlayer(player1);
-  //   game.startGame();
-  //   assertEquals(2, player1.handSize());
-  //   assertEquals(2, )
-  // }
+  @Test
+  public void canStartGame() {
+    game.addPlayer(player1);
+    game.startGame();
+    assertEquals(2, player1.handSize());
+    assertEquals(2, game.getDealer().handSize());
+  }
 
   // @Test
   // public void canCompareHands() {

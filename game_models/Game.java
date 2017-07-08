@@ -24,11 +24,18 @@ public class Game {
     return this.dealer;
   }
 
+  public void dealRound() {
+    for (Player player : players) {
+      this.dealer.deal(player); 
+    }
+  }
 
-
-  // public void startGame() {
-
-  // }
+  public void startGame() {
+    dealRound();
+    this.dealer.deal();
+    dealRound();
+    this.dealer.deal();
+  }
 
   // public void compareHands() {
 
