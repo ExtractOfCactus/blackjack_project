@@ -16,6 +16,10 @@ public class Game {
     return this.players;
   }
 
+  public void addPlayer(Player player) {
+    this.players.add(player);
+  }
+
 
 
   // public void startGame() {
