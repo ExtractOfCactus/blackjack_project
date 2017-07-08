@@ -12,8 +12,20 @@ public class Game {
     // this.setUpRankValues();
   }
 
+  public ArrayList<Player> getPlayers() {
+    return this.players;
+  }
 
-  // public int
+
+
+  // public void startGame() {
+
+  // }
+
+  // public void compareHands() {
+
+  // }
+ 
 
 
 }
