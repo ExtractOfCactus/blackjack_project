@@ -23,9 +23,17 @@ public class GameTest {
     assertEquals(1, game.getPlayers().size());
   }
 
+  @Test
+  public void canGetDealer() {
+    assertEquals("Dealer", game.getDealer().getName());
+  }
+
   // @Test
   // public void canStartGame() {
-
+  //   game.addPlayer(player1);
+  //   game.startGame();
+  //   assertEquals(2, player1.handSize());
+  //   assertEquals(2, )
   // }
 
   // @Test

@@ -8,7 +8,7 @@ public class Game {
 
   public Game() {
     this.players = new ArrayList<Player>();
-    this.dealer = new Dealer("Kev the Dealer");
+    this.dealer = new Dealer("Dealer");
     // this.setUpRankValues();
   }
 
@@ -18,6 +18,10 @@ public class Game {
 
   public void addPlayer(Player player) {
     this.players.add(player);
+  }
+
+  public Dealer getDealer() {
+    return this.dealer;
   }
 
 

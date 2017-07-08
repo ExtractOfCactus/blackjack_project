@@ -18,4 +18,8 @@ public class Participant {
     return this.hand;
   }
 
+  public int handSize() {
+    return this.hand.size();
+  }
+
 }
