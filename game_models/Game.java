@@ -37,9 +37,31 @@ public class Game {
     this.dealer.deal();
   }
 
-  // public String showPlayerCards(Player player) {
+  public void showPlayerCards() {
+    for (Player player : players) {
+      System.out.println(player.getName() + ":");
+      for (Card card : player.getHand().getCards()) {
+        Rank rank = card.getRank();
+        Suit suit = card.getSuit();
+        System.out.println(rank + " of " + suit);
+      }
+      System.out.println(player.getName() + " has " + player.handValue());
+      System.out.println(" ");
+    }
+  }
 
-  // }
+  public void showDealerCards() {
+    System.out.println(dealer.getName() + ":");
+    for (Card card : this.dealer.getHand().getCards()) {
+      Rank rank = card.getRank();
+      Suit suit = card.getSuit();
+      System.out.println(rank + " of " + suit);
+    }
+    System.out.println(dealer.getName() + " has " + dealer.handValue());
+    System.out.println(" ");
+  }
+
+  
 
   public boolean dealerBlackjack() {
     if (this.dealer.handValue() == 21) {
@@ -100,6 +122,8 @@ public class Game {
     Player player = new Player("Kirsty");
     addPlayer(player);
     initialDeal();
+    showPlayerCards();
+    showDealerCards();
     compareHands();
   }
 
