@@ -37,4 +37,5 @@ public class DealerTest {
     assertEquals(1, player.getHand().size());
     assertEquals(card1, card2);
   }
+
 }

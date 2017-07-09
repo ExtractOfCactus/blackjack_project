@@ -1,6 +1,8 @@
 package game_models;
 import java.util.ArrayList;
 import enums.*;
+import java.util.Collections;
+import behaviours.*;
 
 public class Shoe {
   private ArrayList<Card> deck;
@@ -40,5 +42,12 @@ public class Shoe {
     this.deck.clear();
     this.setUpDeck();
   }
+
+  public Card selectRandomCard() {
+    Collections.shuffle(this.deck);
+    return this.deck.get(0);
+  }
+
+
 
 }

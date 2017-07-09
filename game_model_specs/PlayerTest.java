@@ -19,4 +19,5 @@ public class PlayerTest {
   public void playerHasHand() {
     assertEquals(0, player.getHand().size());
   }
+
 }

@@ -35,11 +35,14 @@ public class Game {
     this.dealer.deal();
     dealRound();
     this.dealer.deal();
+    for (Player player : players) {
+    }
   }
 
-  // public void compareHands() {
 
-  // }
+  public void compareHands() {
+
+  }
  
 
 

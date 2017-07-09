@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import game_models.*;
 import enums.*;
+import behaviours.*;
 
 public class ShoeTest {
   Shoe shoe;
@@ -25,6 +26,13 @@ public class ShoeTest {
   public void canGetFirstCard() {
     assertEquals(Suit.HEARTS, shoe.getFirstCard().getSuit());
   }
+
+  // @Test
+  // public void canSelectRandomCard() {
+  //   Card card = shoe.selectRandomCard();
+  //   assertEquals(6, card().value());
+  //   assertEquals(Suit.HEARTS, card.getSuit());
+  // }
 
   @Test
   public void canRemoveCard() {

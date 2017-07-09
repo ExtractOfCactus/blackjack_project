@@ -1,6 +1,8 @@
 import static org.junit.Assert.*;
 import org.junit.*;
 import game_models.*;
+import org.mockito.*;
+import static org.mockito.Mockito.*;
 
 public class GameTest {
   Player player1;
@@ -32,14 +34,16 @@ public class GameTest {
   public void canStartGame() {
     game.addPlayer(player1);
     game.initialDeal();
+    Shoe result = game.getDealer().getShoe();
+    assertEquals(48, result.size());
     assertEquals(2, player1.handSize());
     assertEquals(2, game.getDealer().handSize());
   }
 
-  // @Test
-  // public void canCompareHands() {
-  //   game.addPlayer(player1);
-  //   game.initialDeal();
-    
-  // }
+  @Test
+  public void canCompareHands() {
+    game.addPlayer(player1);
+    game.initialDeal();
+
+  }
 }
