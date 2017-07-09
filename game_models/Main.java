@@ -1,9 +1,9 @@
-package game_models;
+// package game_models;
 
-public class Main {
+// public class Main {
 
-  public static void main(String[] args){
+//   public static void main(String[] args){
 
-  }
+//   }
   
-}
+// }

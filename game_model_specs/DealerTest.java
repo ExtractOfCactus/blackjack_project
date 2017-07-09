@@ -38,4 +38,11 @@ public class DealerTest {
     assertEquals(card1, card2);
   }
 
+  @Test
+  public void canGetValue() {
+    dealer.deal();
+    dealer.deal();
+    System.out.println(dealer.handValue());
+  }
+
 }

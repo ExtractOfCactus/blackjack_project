@@ -35,15 +35,81 @@ public class Game {
     this.dealer.deal();
     dealRound();
     this.dealer.deal();
-    for (Player player : players) {
+  }
+
+  // public String showPlayerCards(Player player) {
+
+  // }
+
+  public boolean dealerBlackjack() {
+    if (this.dealer.handValue() == 21) {
+      for (Player player : players) {
+        if (player.handValue() == 21) {
+          standOff();
+        }
+        else {
+          playerLoses(player);
+          System.out.println("Dealer has BlackJack");
+        }
+      }
+      return true;
     }
+    else {
+      return false;
+    }
+  }
+
+  public void blackjack(Player player) {
+    System.out.println(player.getName() + " wins with BlackJack!");
+  }
+
+  public void standOff() {
+    System.out.println("Both hands are equal. It's a stand off!");
+  }
+
+  public void playerWins(Player player) {
+    System.out.println(player.getName() + " wins!");
+  }
+
+  public void playerLoses(Player player) {
+    System.out.println(player.getName() + " loses.");
   }
 
 
   public void compareHands() {
-
+    if (dealerBlackjack() == false) {
+      for (Player player : players) {
+        if (player.handValue() == 21) {
+          blackjack(player);
+        }
+        else if (player.handValue() == this.dealer.handValue()) {
+          standOff();
+        }
+        else if (player.handValue() > this.dealer.handValue()) {
+          playerWins(player);
+        }
+        else if (player.handValue() < this.dealer.handValue()) {
+          playerLoses(player);
+        }
+      }
+    }
   }
- 
+
+
+  public void run() {
+    Player player = new Player("Kirsty");
+    addPlayer(player);
+    initialDeal();
+    compareHands();
+  }
+
+
+ // Game game = new Game();
+
+ // game.run();
 
 
 }
+
+
+

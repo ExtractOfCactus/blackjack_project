@@ -27,4 +27,5 @@ public class Dealer extends Participant {
     this.hand.addCard(card);
     this.shoe.remove(0);
   }
+
 }

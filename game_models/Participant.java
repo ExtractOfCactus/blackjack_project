@@ -22,4 +22,8 @@ public class Participant {
     return this.hand.size();
   }
 
+  public int handValue() {
+    return this.hand.handTotal();
+  }
+
 }
