@@ -7,10 +7,12 @@ public class Card {
   private Suit suit;
   private HashMap<Enum, Integer> rankValues;
 
+
   public Card(Rank rank, Suit suit) {
     this.rank = rank;
     this.suit = suit;
     this.rankValues = new HashMap<Enum, Integer>();
+
   }
 
   public HashMap<Enum, Integer> getRankValues() {
@@ -23,10 +25,6 @@ public class Card {
 
   public Rank getRank() {
     return this.rank;
-  }
-
-  public Integer value() {
-    return this.rankValues.get(getRank());
   }
 
 }

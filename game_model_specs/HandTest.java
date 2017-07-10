@@ -39,10 +39,4 @@ public class HandTest {
     assertEquals(0, hand.size());
   }
 
-  @Test
-  public void canGetHandTotal() {
-    hand.addCard(card1);
-    hand.addCard(card2);
-    assertEquals(14, hand.handTotal());
-  }
 }

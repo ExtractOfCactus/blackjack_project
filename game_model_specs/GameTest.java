@@ -1,15 +1,18 @@
 import static org.junit.Assert.*;
 import org.junit.*;
 import game_models.*;
+import enums.*;
 // import org.mockito.*;
 // import static org.mockito.Mockito.*;
 
 public class GameTest {
+  Card card1;
   Player player1;
   Game game;
 
   @Before
   public void before() {
+    card1 = new Card(Rank.FOUR, Suit.HEARTS);
     player1 = new Player("Kirsty");
     game = new Game();
   }
@@ -38,6 +41,18 @@ public class GameTest {
     assertEquals(49, result.size());
     assertEquals(2, player1.handSize());
     assertEquals(1, game.getDealer().handSize());
+  }
+
+  @Test
+  public void canGetCardValue() {
+    assertNotNull(game.rankValue(card1));
+  }
+
+  @Test
+  public void canAddHandTotals() {
+    game.addPlayer(player1);
+    game.initialDeal();
+    assertNotNull(game.handValue(player1));
   }
 
   // @Test

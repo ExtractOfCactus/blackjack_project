@@ -9,12 +9,12 @@ public class CardTest {
 
   @Before
   public void before() {
-  card = new Card(Rank.FOUR, Suit.CLUBS);
+  card = new Card(Rank.FOUR, Suit.HEARTS);
   }
 
   @Test
   public void canGetSuit() {
-    assertEquals(Suit.CLUBS, card.getSuit());
+    assertEquals(Suit.HEARTS, card.getSuit());
   }
 
   @Test 
@@ -22,10 +22,4 @@ public class CardTest {
     assertEquals(Rank.FOUR, card.getRank());
   }
 
-  @Test
-  public void canGetValue() {
-    card.getRankValues().put(Rank.FOUR, 4);
-    int result = card.getRankValues().get(card.getRank());
-    assertEquals(4, result);
-  }
 }
