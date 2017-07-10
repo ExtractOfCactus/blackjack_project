@@ -64,13 +64,13 @@ public class Game {
 
   public boolean dealerBlackjack() {
     if (this.dealer.handValue() == 21 && dealer.handSize() == 2) {
+      System.out.println("Dealer has BlackJack");
       for (Player player : players) {
         if (player.handValue() == 21 && player.handSize() == 2) {
           standOff();
         }
         else {
           playerLoses(player);
-          System.out.println("Dealer has BlackJack");
         }
       }
       return true;
@@ -112,7 +112,6 @@ public class Game {
 
   public boolean dealerBust() {
     if (dealer.handValue() > 21) {
-      System.out.println(dealer.getName() + " has bust!");
       return true;
     }
     else {
@@ -128,6 +127,7 @@ public class Game {
     for (Player player : players) {
       if (player.handValue() == 21) {
         blackjack(player);
+        return;
       }
       if (dealer.handValue() < 22 && player.handValue() < 22) {
         if (player.handValue() == this.dealer.handValue()) {
@@ -150,12 +150,17 @@ public class Game {
 
 
   public void run() {
-    Player player = new Player("Kirsty");
-    addPlayer(player);
+    Player player1 = new Player("Kirsty");
+    Player player2 = new Player("Glen");
+    addPlayer(player1);
+    addPlayer(player2);
     initialDeal();
     showPlayerCards();
     showDealerCards();
     dealerFinish();
+    if (dealerBust()) {
+      System.out.println(dealer.getName() + " has bust!");
+    }
     compareHands();
   }
 
