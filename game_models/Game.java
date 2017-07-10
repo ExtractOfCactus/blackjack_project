@@ -85,6 +85,7 @@ public class Game {
       String name = input.substring(0,1).toUpperCase() + input.substring(1);
       Player player = new Player(name);
       addPlayer(player);
+      System.out.println(player.getName() + " has joined the game");
       input = scanner.nextLine();
     }
   }
@@ -123,6 +124,7 @@ public class Game {
 
 
   public void playersPlay() {
+    System.out.println(" ");
     Scanner scanner = new Scanner(System.in);
     showDealerCards();
     for (Player player : players) {
@@ -139,6 +141,7 @@ public class Game {
         }
         answer = scanner.nextLine().toUpperCase();
       }
+      System.out.println(" ");
     }
   }
 
@@ -186,7 +189,7 @@ public class Game {
   }
 
   public void dealerFinish() {
-    if (handValue(dealer) < 17) {
+    while (handValue(dealer) < 17) {
       dealer.deal();
       int index = dealer.handSize() - 1;
       Card card = dealer.getHand().getCards().get(index);
@@ -199,7 +202,7 @@ public class Game {
       else {
         System.out.println(dealer.getName() + " has " + handValue(dealer));
       }
-      dealerFinish();
+      // dealerFinish();
     }
   }
 
@@ -209,7 +212,7 @@ public class Game {
   }
 
   public void standOff(Player player) {
-    System.out.println("Both hands are equal. " + player.getName() + " has a stand off!");
+    System.out.println(player.getName() + " has a stand off by matching the dealer");
   }
 
   public void playerWins(Player player) {
@@ -265,13 +268,8 @@ public class Game {
 
 
   public void run() {
-    // Player player1 = new Player("Kirsty");
-    // Player player2 = new Player("Glen");
-    // addPlayer(player1);
-    // addPlayer(player2);
     populatePlayers();
     initialDeal();
-    // showPlayerCards();
     playersPlay();
     showDealerCards();
     dealerFinish();
@@ -279,6 +277,8 @@ public class Game {
   }
 
 }
-
+//player blackjack during playersPlay() needs enacted. (Shows up at end. Might be fine.)
+//declare win on blackjack if dealer does not start with an ace or ten? Probably not needed...
+// definitely need to withdraw the option to take a card if player has blackjack
 
 
