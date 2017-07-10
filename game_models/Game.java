@@ -12,6 +12,8 @@ public class Game {
     // this.setUpRankValues();
   }
 
+  
+
   public ArrayList<Player> getPlayers() {
     return this.players;
   }
@@ -88,7 +90,12 @@ public class Game {
       Rank rank = card.getRank();
       Suit suit = card.getSuit();
       System.out.println(dealer.getName() + " draws the " + rank + " of " + suit);
-      System.out.println(dealer.getName() + " has " + dealer.handValue());
+      if (dealer.handValue() > 21) {
+        System.out.println(dealer.getName() + " has bust!");
+      }
+      else {
+        System.out.println(dealer.getName() + " has " + dealer.handValue());
+      }
       dealerFinish();
     }
   }
@@ -158,9 +165,6 @@ public class Game {
     showPlayerCards();
     showDealerCards();
     dealerFinish();
-    if (dealerBust()) {
-      System.out.println(dealer.getName() + " has bust!");
-    }
     compareHands();
   }
 
