@@ -17,7 +17,7 @@ public class Game {
   }
 
   public void setUpRankValues() {
-    rankValues.put(Rank.ACE, 1);
+    rankValues.put(Rank.ACE, 11);
     rankValues.put(Rank.TWO, 2);
     rankValues.put(Rank.THREE, 3);
     rankValues.put(Rank.FOUR, 4);
@@ -32,17 +32,21 @@ public class Game {
     rankValues.put(Rank.KING, 10);
   }
 
-  public void oneOrEleven(Player player) {
-    if (handValue(player) < 11) {
-      rankValues.put(Rank.ACE, 11);
-    }
-  }
+  // public void oneOrEleven(Player player) {
+  //   for (Card card : player.getHand().getCards()) {
+  //     if (card.getRank() == Rank.ACE && handValue(player) > 21) {
+  //       handValue(player) -= 10;
+  //     }
+  //   }
+  // }
 
-  public void oneOrEleven() {
-    if (handValue(this.dealer) < 11) {
-      rankValues.put(Rank.ACE, 11);
-    }
-  }
+  // public void oneOrEleven(Dealer dealer) {
+  //   for (Card card : dealer.getHand().getCards()) {
+  //     if (card.getRank == Rank.ACE && handValue(dealer) > 21) {
+  //       handValue(dealer) -= 10;
+  //     }
+  //   }
+  // }
 
   public Integer rankValue(Card card) {
     return rankValues.get(card.getRank());
@@ -60,6 +64,9 @@ public class Game {
     int total = 0;
     for (Card card : dealer.getHand().getCards()) {
       total += rankValue(card);
+      if (card.getRank() == Rank.ACE && total > 21) {
+        total -= 10;
+      }
     }
     return total;
   }  
@@ -184,7 +191,6 @@ public class Game {
     for (Player player : players) {
       if (handValue(player) == 21) {
         blackjack(player);
-        return;
       }
       if (handValue(dealer) < 22 && handValue(player) < 22) {
         if (handValue(player) == handValue(this.dealer)) {
