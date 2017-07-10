@@ -105,27 +105,53 @@ public class Game {
     dealRound();
   }
 
+  public String hitOrStay(Player player) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println(player.getName() + ": Would you like to take a card? (Y/N)");
+    String answer = scanner.nextLine().toUpperCase();
+    return answer;
+  }
 
-  // public void playersPlay() {
-  //   Scanner scanner = new Scanner(System.in);
-  //   for (Player player : players) {
-  //     showPlayerCards(player);
-  //     System.out.println(player.getName() + ": Would you like to take a card? (Y/N)");
-  //   }
-  // }
+  public void dealAndDisplay(Player player) {
+    this.dealer.deal(player);
+    int index = player.handSize() - 1;
+    Card card = player.getHand().getCards().get(index);
+    Rank rank = card.getRank();
+    Suit suit = card.getSuit();
+    System.out.println(player.getName() + " draws the " + rank + " of " + suit);
+  }
+
+
+  public void playersPlay() {
+    Scanner scanner = new Scanner(System.in);
+    showDealerCards();
+    for (Player player : players) {
+      showPlayerCards(player);
+      String answer = hitOrStay(player);
+      while (answer.equals("Y") && handValue(player) < 21) {
+        dealAndDisplay(player);
+        if (handValue(player) > 21) {
+          playerBust(player);
+          break;
+        }
+        else {
+          System.out.println(player.getName() + " has " + handValue(player));
+        }
+        answer = scanner.nextLine().toUpperCase();
+      }
+    }
+  }
 
 
   public void showPlayerCards(Player player) {
-    // for (Player player : players) {
       System.out.println(player.getName() + ":");
       for (Card card : player.getHand().getCards()) {
         Rank rank = card.getRank();
         Suit suit = card.getSuit();
         System.out.println(rank + " of " + suit);
-      // }
+      }
       System.out.println(player.getName() + " has " + handValue(player));
       System.out.println(" ");
-    }
   }
 
 
@@ -194,6 +220,11 @@ public class Game {
     System.out.println(player.getName() + " loses.");
   }
 
+  public void playerBust(Player player) {
+    System.out.println(player.getName() + " is bust!");
+    player.getHand().getCards().clear();
+  }
+
   public boolean dealerBust() {
     if (handValue(dealer) > 21) {
       return true;
@@ -209,8 +240,11 @@ public class Game {
       return;
     }
     for (Player player : players) {
-      if (handValue(player) == 21) {
+      if (handValue(player) == 21 && player.handSize() == 2) {
         blackjack(player);
+      }
+      if (handValue(player) > 21) {
+        playerBust(player);
       }
       if (handValue(dealer) < 22 && (handValue(player) < 22 && player.handSize() != 0)) {
         if (handValue(player) == handValue(this.dealer)) {
@@ -237,7 +271,8 @@ public class Game {
     // addPlayer(player2);
     populatePlayers();
     initialDeal();
-    showPlayerCards();
+    // showPlayerCards();
+    playersPlay();
     showDealerCards();
     dealerFinish();
     compareHands();
