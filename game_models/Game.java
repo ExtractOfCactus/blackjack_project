@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import enums.*;
 import behaviours.*;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Game {
   private ArrayList<Player> players;
@@ -31,22 +32,6 @@ public class Game {
     rankValues.put(Rank.QUEEN, 10);
     rankValues.put(Rank.KING, 10);
   }
-
-  // public void oneOrEleven(Player player) {
-  //   for (Card card : player.getHand().getCards()) {
-  //     if (card.getRank() == Rank.ACE && handValue(player) > 21) {
-  //       handValue(player) -= 10;
-  //     }
-  //   }
-  // }
-
-  // public void oneOrEleven(Dealer dealer) {
-  //   for (Card card : dealer.getHand().getCards()) {
-  //     if (card.getRank == Rank.ACE && handValue(dealer) > 21) {
-  //       handValue(dealer) -= 10;
-  //     }
-  //   }
-  // }
 
   public Integer rankValue(Card card) {
     return rankValues.get(card.getRank());
@@ -92,6 +77,18 @@ public class Game {
     this.players.add(player);
   }
 
+  public void populatePlayers() {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Enter a new player name or type 'play' to begin: ");
+    String input = scanner.nextLine();
+    while (!input.toLowerCase().equals("play") && this.players.size() < 4) {
+      String name = input.substring(0,1).toUpperCase() + input.substring(1);
+      Player player = new Player(name);
+      addPlayer(player);
+      input = scanner.nextLine();
+    }
+  }
+
   public Dealer getDealer() {
     return this.dealer;
   }
@@ -108,18 +105,30 @@ public class Game {
     dealRound();
   }
 
-  public void showPlayerCards() {
-    for (Player player : players) {
+
+  // public void playersPlay() {
+  //   Scanner scanner = new Scanner(System.in);
+  //   for (Player player : players) {
+  //     showPlayerCards(player);
+  //     System.out.println(player.getName() + ": Would you like to take a card? (Y/N)");
+  //   }
+  // }
+
+
+  public void showPlayerCards(Player player) {
+    // for (Player player : players) {
       System.out.println(player.getName() + ":");
       for (Card card : player.getHand().getCards()) {
         Rank rank = card.getRank();
         Suit suit = card.getSuit();
         System.out.println(rank + " of " + suit);
-      }
+      // }
       System.out.println(player.getName() + " has " + handValue(player));
       System.out.println(" ");
     }
   }
+
+
 
   public void showDealerCards() {
     System.out.println(dealer.getName() + ":");
@@ -130,16 +139,14 @@ public class Game {
     }
     System.out.println(dealer.getName() + " has " + handValue(dealer));
     System.out.println(" ");
-  }
-
-  
+  } 
 
   public boolean dealerBlackjack() {
     if (handValue(this.dealer) == 21 && dealer.handSize() == 2) {
       System.out.println("Dealer has BlackJack");
       for (Player player : players) {
         if (handValue(player) == 21 && player.handSize() == 2) {
-          standOff();
+          standOff(player);
         }
         else {
           playerLoses(player);
@@ -153,7 +160,6 @@ public class Game {
   }
 
   public void dealerFinish() {
-    // int handTotal = handValue(dealer);
     if (handValue(dealer) < 17) {
       dealer.deal();
       int index = dealer.handSize() - 1;
@@ -176,8 +182,8 @@ public class Game {
     player.getHand().getCards().clear();
   }
 
-  public void standOff() {
-    System.out.println("Both hands are equal. It's a stand off!");
+  public void standOff(Player player) {
+    System.out.println("Both hands are equal. " + player.getName() + " has a stand off!");
   }
 
   public void playerWins(Player player) {
@@ -206,10 +212,9 @@ public class Game {
       if (handValue(player) == 21) {
         blackjack(player);
       }
-
       if (handValue(dealer) < 22 && (handValue(player) < 22 && player.handSize() != 0)) {
         if (handValue(player) == handValue(this.dealer)) {
-          standOff();
+          standOff(player);
         }
         else if (handValue(player) > handValue(this.dealer)) {
           playerWins(player);
@@ -226,10 +231,11 @@ public class Game {
 
 
   public void run() {
-    Player player1 = new Player("Kirsty");
-    Player player2 = new Player("Glen");
-    addPlayer(player1);
-    addPlayer(player2);
+    // Player player1 = new Player("Kirsty");
+    // Player player2 = new Player("Glen");
+    // addPlayer(player1);
+    // addPlayer(player2);
+    populatePlayers();
     initialDeal();
     showPlayerCards();
     showDealerCards();

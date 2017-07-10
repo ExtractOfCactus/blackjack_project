@@ -77,11 +77,4 @@ public class GameTest {
     assertEquals(23, game.handValue(game.getDealer()));
   }
 
-  // @Test
-  // public void canCompareHands() {
-  //   game.addPlayer(player1);
-  //   game.initialDeal();
-  //   assertNotNull(game.compareHands());
-  //   System.out.println();
-  // }
 }
