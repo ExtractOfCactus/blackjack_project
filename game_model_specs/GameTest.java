@@ -55,6 +55,28 @@ public class GameTest {
     assertNotNull(game.handValue(player1));
   }
 
+  @Test
+  public void dealerCanStartWithAnAce() {
+    Card card2 = new Card(Rank.ACE, Suit.HEARTS);
+    Card card3 = new Card(Rank.THREE, Suit.HEARTS);
+    Card card4 = new Card(Rank.ACE, Suit.CLUBS);
+    Card card5 = new Card(Rank.SEVEN, Suit.HEARTS);
+    Card card6 = new Card(Rank.ACE, Suit.SPADES);
+    Card card7 = new Card(Rank.ACE, Suit.DIAMONDS);
+    Card card8 = new Card(Rank.NINE, Suit.DIAMONDS);
+
+    game.getDealer().getHand().addCard(card2);
+
+    assertEquals(11, game.handValue(game.getDealer()));
+    game.getDealer().getHand().addCard(card3);
+    game.getDealer().getHand().addCard(card4);
+    game.getDealer().getHand().addCard(card5);
+    game.getDealer().getHand().addCard(card6);
+    game.getDealer().getHand().addCard(card7);
+    game.getDealer().getHand().addCard(card8);
+    assertEquals(23, game.handValue(game.getDealer()));
+  }
+
   // @Test
   // public void canCompareHands() {
   //   game.addPlayer(player1);

@@ -53,23 +53,36 @@ public class Game {
   }
 
   public int handValue(Player player) {
-    int total = 0;
-    for (Card card : player.getHand().getCards()) {
-      total += rankValue(card);
+      int total = 0;
+      int aceCounter = 0;
+      for (Card card : player.getHand().getCards()) {
+        total += rankValue(card);
+        if (card.getRank() == Rank.ACE) {
+          aceCounter += 1;
+        }
+        if (total > 21 && aceCounter > 0) {
+          total -= 10;
+          aceCounter -= 1;
+        }
+      }
+      return total;
     }
-    return total;
-  }
 
   public int handValue(Dealer dealer) {
     int total = 0;
+    int aceCounter = 0;
     for (Card card : dealer.getHand().getCards()) {
       total += rankValue(card);
-      if (card.getRank() == Rank.ACE && total > 21) {
+      if (card.getRank() == Rank.ACE) {
+        aceCounter += 1;
+      }
+      if (total > 21 && aceCounter > 0) {
         total -= 10;
+        aceCounter -= 1;
       }
     }
     return total;
-  }  
+  }
 
   public ArrayList<Player> getPlayers() {
     return this.players;
@@ -140,6 +153,7 @@ public class Game {
   }
 
   public void dealerFinish() {
+    // int handTotal = handValue(dealer);
     if (handValue(dealer) < 17) {
       dealer.deal();
       int index = dealer.handSize() - 1;
@@ -192,7 +206,8 @@ public class Game {
       if (handValue(player) == 21) {
         blackjack(player);
       }
-      if (handValue(dealer) < 22 && handValue(player) < 22) {
+
+      if (handValue(dealer) < 22 && (handValue(player) < 22 && player.handSize() != 0)) {
         if (handValue(player) == handValue(this.dealer)) {
           standOff();
         }
@@ -207,8 +222,6 @@ public class Game {
         playerWins(player);
       }
     }
-    
-    
   }
 
 
