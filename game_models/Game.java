@@ -34,7 +34,6 @@ public class Game {
     dealRound();
     this.dealer.deal();
     dealRound();
-    this.dealer.deal();
   }
 
   public void showPlayerCards() {
@@ -64,9 +63,9 @@ public class Game {
   
 
   public boolean dealerBlackjack() {
-    if (this.dealer.handValue() == 21) {
+    if (this.dealer.handValue() == 21 && dealer.handSize() == 2) {
       for (Player player : players) {
-        if (player.handValue() == 21) {
+        if (player.handValue() == 21 && player.handSize() == 2) {
           standOff();
         }
         else {
@@ -81,8 +80,22 @@ public class Game {
     }
   }
 
+  public void dealerFinish() {
+    if (dealer.handValue() < 17) {
+      dealer.deal();
+      int index = dealer.handSize() - 1;
+      Card card = dealer.getHand().getCards().get(index);
+      Rank rank = card.getRank();
+      Suit suit = card.getSuit();
+      System.out.println(dealer.getName() + " draws the " + rank + " of " + suit);
+      System.out.println(dealer.getName() + " has " + dealer.handValue());
+      dealerFinish();
+    }
+  }
+
   public void blackjack(Player player) {
     System.out.println(player.getName() + " wins with BlackJack!");
+    player.getHand().getCards().clear();
   }
 
   public void standOff() {
@@ -97,14 +110,27 @@ public class Game {
     System.out.println(player.getName() + " loses.");
   }
 
+  public boolean dealerBust() {
+    if (dealer.handValue() > 21) {
+      System.out.println(dealer.getName() + " has bust!");
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
 
   public void compareHands() {
-    if (dealerBlackjack() == false) {
-      for (Player player : players) {
-        if (player.handValue() == 21) {
-          blackjack(player);
-        }
-        else if (player.handValue() == this.dealer.handValue()) {
+    if (dealerBlackjack() == true) {
+      return;
+    }
+    for (Player player : players) {
+      if (player.handValue() == 21) {
+        blackjack(player);
+      }
+      if (dealer.handValue() < 22 && player.handValue() < 22) {
+        if (player.handValue() == this.dealer.handValue()) {
           standOff();
         }
         else if (player.handValue() > this.dealer.handValue()) {
@@ -114,7 +140,12 @@ public class Game {
           playerLoses(player);
         }
       }
+      else if (dealerBust() && (player.handValue() < 22 && player.handSize() != 0)) {
+        playerWins(player);
+      }
     }
+    
+    
   }
 
 
@@ -124,14 +155,9 @@ public class Game {
     initialDeal();
     showPlayerCards();
     showDealerCards();
+    dealerFinish();
     compareHands();
   }
-
-
- // Game game = new Game();
-
- // game.run();
-
 
 }
 

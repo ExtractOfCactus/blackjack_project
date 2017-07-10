@@ -35,9 +35,9 @@ public class GameTest {
     game.addPlayer(player1);
     game.initialDeal();
     Shoe result = game.getDealer().getShoe();
-    assertEquals(48, result.size());
+    assertEquals(49, result.size());
     assertEquals(2, player1.handSize());
-    assertEquals(2, game.getDealer().handSize());
+    assertEquals(1, game.getDealer().handSize());
   }
 
   // @Test
