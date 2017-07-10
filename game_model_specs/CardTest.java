@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import game_models.*;
 import enums.*;
+import java.util.HashMap;
 
 public class CardTest {
   Card card;
@@ -23,6 +24,8 @@ public class CardTest {
 
   @Test
   public void canGetValue() {
-    assertEquals(4, card.value());
+    card.getRankValues().put(Rank.FOUR, 4);
+    int result = card.getRankValues().get(card.getRank());
+    assertEquals(4, result);
   }
 }

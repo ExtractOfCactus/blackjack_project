@@ -1,18 +1,53 @@
 package game_models;
 import java.util.ArrayList;
 import enums.*;
+import java.util.HashMap;
 
 public class Game {
   private ArrayList<Player> players;
   private Dealer dealer;
+  HashMap<Enum, Integer> rankValues; 
 
   public Game() {
+    rankValues = new HashMap<Enum, Integer>();
     this.players = new ArrayList<Player>();
     this.dealer = new Dealer("Dealer");
-    // this.setUpRankValues();
+    this.setUpRankValues();
   }
 
-  
+  public void setUpRankValues() {
+    HashMap<Enum, Integer> rankValues = new HashMap<Enum, Integer>();
+    rankValues.put(Rank.TWO, 2);
+    rankValues.put(Rank.THREE, 3);
+    rankValues.put(Rank.FOUR, 4);
+    rankValues.put(Rank.FIVE, 5);
+    rankValues.put(Rank.SIX, 6);
+    rankValues.put(Rank.SEVEN, 7);
+    rankValues.put(Rank.EIGHT, 8);
+    rankValues.put(Rank.NINE, 9);
+    rankValues.put(Rank.TEN, 10);
+    rankValues.put(Rank.JACK, 10);
+    rankValues.put(Rank.QUEEN, 10);
+    rankValues.put(Rank.KING, 10);
+  }
+
+  public void oneOrEleven(Player player) {
+    if (player.handValue() < 11) {
+      rankValues.put(Rank.ACE, 11);
+    }
+    else {
+      rankValues.put(Rank.ACE, 1);
+    }
+  }
+
+  public void oneOrEleven() {
+    if (this.dealer.handValue() < 11) {
+      rankValues.put(Rank.ACE, 11);
+    }
+    else {
+      rankValues.put(Rank.ACE, 1);
+    }
+  }
 
   public ArrayList<Player> getPlayers() {
     return this.players;
