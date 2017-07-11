@@ -241,21 +241,22 @@ public class Game {
     }
   }
 
+  public void playerVsDealerBlackjack() {
+    for (Player player : players) {
+      if (playerBlackjack(player)) {
+        viewer.standOff(player);
+      }
+      else viewer.playerLoses(player);
+    }
+  }
+
   public boolean dealerBlackjack() {
     if (handValue(dealer) == 21 && dealer.handSize() == 2) {
       viewer.declareDealerBlackjack();
-      for (Player player : players) {
-        // (playerBlackjack(player)) ? viewer.standOff(player) : viewer.playerLoses(player);
-        if (playerBlackjack(player)) {
-          viewer.standOff(player);
-        }
-        else viewer.playerLoses(player);
-      }
+      playerVsDealerBlackjack();
       return true;
     }
-    else {
-      return false;
-    }
+    else return false;
   }
 
 
