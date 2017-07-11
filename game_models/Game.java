@@ -65,7 +65,7 @@ public class Game {
 
   public void populatePlayers() {
     Scanner scanner = new Scanner(System.in);
-    System.out.println("Enter a new player name to join the game then type 'play' to begin: ");
+    viewer.addPlayerOrPlay();
     String input = scanner.nextLine();
     while (!input.toLowerCase().equals("play") && this.players.size() < 4) {
       if (input.equals("")) {
