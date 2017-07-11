@@ -9,8 +9,10 @@ public class Game {
   private ArrayList<Player> players;
   private Dealer dealer;
   private HashMap<Enum, Integer> rankValues; 
+  private Viewer viewer;
 
-  public Game() {
+  public Game(Viewer viewer) {
+    this.viewer = viewer;
     rankValues = new HashMap<Enum, Integer>();
     this.players = new ArrayList<Player>();
     this.dealer = new Dealer("Dealer");
@@ -135,18 +137,19 @@ public class Game {
         if (handValue(player) == 21 && player.handSize() == 2) {
           Card dealerFirstCard = dealer.getHand().getCards().get(0);
           if (rankValue(dealerFirstCard) < 10) {
-            blackjack(player);
+            viewer.blackjack(player);
           }
         }
         if (handValue(player) == 21) {
+          viewer.score(player, handValue(player));
           break;
         }
         if (handValue(player) > 21) {
-          playerBust(player);
+          viewer.playerBust(player);
           break;
         }
         else {
-          System.out.println(player.getName() + " has " + handValue(player));
+          viewer.score(player, handValue(player));
         }
         answer = scanner.nextLine().toUpperCase();
       }
@@ -179,23 +182,6 @@ public class Game {
     System.out.println(" ");
   } 
 
-  public boolean dealerBlackjack() {
-    if (handValue(this.dealer) == 21 && dealer.handSize() == 2) {
-      System.out.println("Dealer has BlackJack");
-      for (Player player : players) {
-        if (handValue(player) == 21 && player.handSize() == 2) {
-          standOff(player);
-        }
-        else {
-          playerLoses(player);
-        }
-      }
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
 
   public void dealerFinish() {
     while (handValue(dealer) < 17) {
@@ -209,36 +195,34 @@ public class Game {
         System.out.println(dealer.getName() + " has bust!");
       }
       else {
-        System.out.println(dealer.getName() + " has " + handValue(dealer));
+        viewer.score(dealer, handValue(dealer));
       }
       // dealerFinish();
     }
   }
 
-  public void blackjack(Player player) {
-    System.out.println(player.getName() + " wins with BlackJack!");
-    player.getHand().getCards().clear();
-  }
-
-  public void standOff(Player player) {
-    System.out.println(player.getName() + " has a stand off by matching the dealer");
-  }
-
-  public void playerWins(Player player) {
-    System.out.println(player.getName() + " wins!");
-  }
-
-  public void playerLoses(Player player) {
-    System.out.println(player.getName() + " loses.");
-  }
-
-  public void playerBust(Player player) {
-    System.out.println(player.getName() + " is bust and loses!");
-    player.getHand().getCards().clear();
-  }
 
   public boolean dealerBust() {
     if (handValue(dealer) > 21) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  public boolean dealerBlackjack() {
+    if (handValue(dealer) == 21 && dealer.handSize() == 2) {
+      // viewer.declareDealerBlackjack();
+      System.out.println("Dealer has BlackJack");
+      for (Player player : players) {
+        if (handValue(player) == 21 && player.handSize() == 2) {
+          viewer.standOff(player);
+        }
+        else {
+          viewer.playerLoses(player);
+        }
+      }
       return true;
     }
     else {
@@ -253,24 +237,25 @@ public class Game {
     }
     for (Player player : players) {
       if (handValue(player) == 21 && player.handSize() == 2) {
-        blackjack(player);
+        viewer.blackjack(player);
       }
       if (handValue(player) > 21) {
-        playerBust(player);
+        viewer.playerBust(player);
+        player.getHand().getCards().clear();
       }
       if (handValue(dealer) < 22 && (handValue(player) < 22 && player.handSize() != 0)) {
-        if (handValue(player) == handValue(this.dealer)) {
-          standOff(player);
+        if (handValue(player) == handValue(dealer)) {
+          viewer.standOff(player);
         }
-        else if (handValue(player) > handValue(this.dealer)) {
-          playerWins(player);
+        else if (handValue(player) > handValue(dealer)) {
+          viewer.playerWins(player);
         }
-        else if (handValue(player) < handValue(this.dealer)) {
-          playerLoses(player);
+        else if (handValue(player) < handValue(dealer)) {
+          viewer.playerLoses(player);
         }
       }
       else if (dealerBust() && (handValue(player) < 22 && player.handSize() != 0)) {
-        playerWins(player);
+        viewer.playerWins(player);
       }
     }
   }
