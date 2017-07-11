@@ -190,7 +190,7 @@ public class Game {
       Card card = dealer.getHand().getCards().get(index);
       Rank rank = card.getRank();
       Suit suit = card.getSuit();
-      System.out.println(dealer.getName() + " draws the " + rank + " of " + suit);
+      viewer.showNewDealerCard(rank, suit);
       if (handValue(dealer) > 21) {
         System.out.println(dealer.getName() + " has bust!");
       }
@@ -213,8 +213,7 @@ public class Game {
 
   public boolean dealerBlackjack() {
     if (handValue(dealer) == 21 && dealer.handSize() == 2) {
-      // viewer.declareDealerBlackjack();
-      System.out.println("Dealer has BlackJack");
+      viewer.declareDealerBlackjack();
       for (Player player : players) {
         if (handValue(player) == 21 && player.handSize() == 2) {
           viewer.standOff(player);

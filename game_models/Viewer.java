@@ -35,4 +35,12 @@ public class Viewer {
   public void playerBust(Player player) {
     System.out.println(player.getName() + " is bust and loses!");
   }
+
+  public void declareDealerBlackjack() {
+    System.out.println("Dealer has BlackJack");
+  }
+
+  public void showNewDealerCard(Rank rank, Suit suit) {
+    System.out.println("Dealer draws the " + rank + " of " + suit);
+  }
 }
