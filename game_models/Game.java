@@ -79,7 +79,7 @@ public class Game {
 
   public void populatePlayers() {
     Scanner scanner = new Scanner(System.in);
-    System.out.println("Enter a new player name or type 'play' to begin: ");
+    System.out.println("Enter a new player name to join the game then type 'play' to begin: ");
     String input = scanner.nextLine();
     while (!input.toLowerCase().equals("play") && this.players.size() < 4) {
       String name = input.substring(0,1).toUpperCase() + input.substring(1);
@@ -132,6 +132,15 @@ public class Game {
       String answer = hitOrStay(player);
       while (answer.equals("Y") && handValue(player) < 21) {
         dealAndDisplay(player);
+        if (handValue(player) == 21 && player.handSize() == 2) {
+          Card dealerFirstCard = dealer.getHand().getCards().get(0);
+          if (rankValue(dealerFirstCard) < 10) {
+            blackjack(player);
+          }
+        }
+        if (handValue(player) == 21) {
+          break;
+        }
         if (handValue(player) > 21) {
           playerBust(player);
           break;
@@ -224,7 +233,7 @@ public class Game {
   }
 
   public void playerBust(Player player) {
-    System.out.println(player.getName() + " is bust!");
+    System.out.println(player.getName() + " is bust and loses!");
     player.getHand().getCards().clear();
   }
 
