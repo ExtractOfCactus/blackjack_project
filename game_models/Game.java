@@ -145,7 +145,7 @@ public class Game {
         String answer = hitOrStay(player);
         while (answer.equals("Y") && handValue(player) < 21) {
           dealAndDisplay(player);
-          if (handValue(player) == 21 && player.handSize() == 2) {
+          if (playerBlackjack(player)) {
             Card dealerFirstCard = dealer.getHand().getCards().get(0);
             if (rankValue(dealerFirstCard) < 10) {
               viewer.blackjack(player);
@@ -228,7 +228,6 @@ public class Game {
       else {
         viewer.score(dealer, handValue(dealer));
       }
-      // dealerFinish();
     }
   }
 
@@ -246,12 +245,11 @@ public class Game {
     if (handValue(dealer) == 21 && dealer.handSize() == 2) {
       viewer.declareDealerBlackjack();
       for (Player player : players) {
-        if (handValue(player) == 21 && player.handSize() == 2) {
+        // (playerBlackjack(player)) ? viewer.standOff(player) : viewer.playerLoses(player);
+        if (playerBlackjack(player)) {
           viewer.standOff(player);
         }
-        else {
-          viewer.playerLoses(player);
-        }
+        else viewer.playerLoses(player);
       }
       return true;
     }
@@ -266,7 +264,7 @@ public class Game {
       return;
     }
     for (Player player : players) {
-      if (handValue(player) == 21 && player.handSize() == 2) {
+      if (playerBlackjack(player)) {
         viewer.blackjack(player);
       }
       if (handValue(dealer) < 22 && (handValue(player) < 22 && player.handSize() != 0)) {
