@@ -84,6 +84,9 @@ public class Game {
     System.out.println("Enter a new player name to join the game then type 'play' to begin: ");
     String input = scanner.nextLine();
     while (!input.toLowerCase().equals("play") && this.players.size() < 4) {
+      if (input.equals("")) {
+        return;
+      }
       String name = input.substring(0,1).toUpperCase() + input.substring(1);
       Player player = new Player(name);
       addPlayer(player);
@@ -182,8 +185,23 @@ public class Game {
     System.out.println(" ");
   } 
 
+  // public boolean noPlayersRemaining() {
+  //   int cardCounter = 0
+  //   for (Player player : players) {
+  //     cardCounter += player.handSize();
+  //     if (cardCounter == 0) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
+
 
   public void dealerFinish() {
+    // if (noPlayersRemaining()) {
+    //   viewer.allBust();
+    //   return;
+    // } 
     while (handValue(dealer) < 17) {
       dealer.deal();
       int index = dealer.handSize() - 1;
@@ -192,7 +210,7 @@ public class Game {
       Suit suit = card.getSuit();
       viewer.showNewDealerCard(rank, suit);
       if (handValue(dealer) > 21) {
-        System.out.println(dealer.getName() + " has bust!");
+        viewer.declareDealerBust();
       }
       else {
         viewer.score(dealer, handValue(dealer));

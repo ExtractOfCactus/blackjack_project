@@ -43,4 +43,12 @@ public class Viewer {
   public void showNewDealerCard(Rank rank, Suit suit) {
     System.out.println("Dealer draws the " + rank + " of " + suit);
   }
+
+  public void declareDealerBust() {
+    System.out.println("Dealer has bust!");
+  }
+
+  // public void allBust() {
+  //   System.out.println("All players have bust!")
+  // }
 }
