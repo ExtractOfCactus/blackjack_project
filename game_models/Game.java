@@ -120,7 +120,7 @@ public class Game {
 
 
   public void playersPlay() {
-    System.out.println(" ");
+    viewer.lineBreak();
     Scanner scanner = new Scanner(System.in);
     showCards(dealer);
     for (Player player : players) {
@@ -153,20 +153,22 @@ public class Game {
       else {
         viewer.declareBlackjack(player);
       }
-      System.out.println(" ");
+      viewer.lineBreak;
     }
   }
 
 
   public void showCards(Participant participant) {
-      System.out.println(participant.getName() + ":");
-      for (Card card : participant.getHand().getCards()) {
-        Rank rank = card.getRank();
-        Suit suit = card.getSuit();
-        System.out.println(rank + " of " + suit);
-      }
-      System.out.println(participant.getName() + " has " + handValue(participant));
-      System.out.println(" ");
+    
+    System.out.println(participant.getName() + ":");
+    for (Card card : participant.getHand().getCards()) {
+      Rank rank = card.getRank();
+      Suit suit = card.getSuit();
+      System.out.println(rank + " of " + suit);
+    }
+    viewer.score(participant, handValue(participant));
+    viewer.lineBreak();
+      
   }
 
   public boolean noPlayersRemaining() {

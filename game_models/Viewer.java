@@ -51,4 +51,8 @@ public class Viewer {
   public void allBust() {
     System.out.println("All players have bust!");
   }
+
+  public void lineBreak() {
+    System.out.println(" ");
+  }
 }
