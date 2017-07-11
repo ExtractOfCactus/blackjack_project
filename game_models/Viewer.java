@@ -7,6 +7,14 @@ import java.util.Scanner;
 
 public class Viewer {
 
+  public void nameTitle() {
+    System.out.println(participant.getName() + ":");
+  }
+
+  public void showRankAndSuit(Rank rank, Suit suit) {
+    System.out.println(rank + " of " + suit);
+  }
+
   public void score(Participant player, int handValue) {
     System.out.println(player.getName() + " has " + handValue);
   }

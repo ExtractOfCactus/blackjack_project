@@ -159,12 +159,11 @@ public class Game {
 
 
   public void showCards(Participant participant) {
-    
-    System.out.println(participant.getName() + ":");
+    viewer.nameTitle(participant);
     for (Card card : participant.getHand().getCards()) {
       Rank rank = card.getRank();
       Suit suit = card.getSuit();
-      System.out.println(rank + " of " + suit);
+      viewer.showRankAndSuit(rank, suit);
     }
     viewer.score(participant, handValue(participant));
     viewer.lineBreak();
