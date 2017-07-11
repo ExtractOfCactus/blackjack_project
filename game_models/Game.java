@@ -262,17 +262,13 @@ public class Game {
 
 
   public void compareHands() {
-    if (dealerBlackjack() == true) {
+    if (dealerBlackjack()) {
       return;
     }
     for (Player player : players) {
       if (handValue(player) == 21 && player.handSize() == 2) {
         viewer.blackjack(player);
       }
-      // if (handValue(player) > 21) {
-      //   viewer.playerBust(player);
-      //   player.getHand().getCards().clear();
-      // }
       if (handValue(dealer) < 22 && (handValue(player) < 22 && player.handSize() != 0)) {
         if (handValue(player) == handValue(dealer)) {
           viewer.standOff(player);
