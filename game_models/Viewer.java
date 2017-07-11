@@ -15,6 +15,10 @@ public class Viewer {
     System.out.println(dealer.getName() + " has " + handValue);
   }
 
+  public void offerCard(Player player) {
+    System.out.println(player.getName() + ": Would you like to take a card? (Y/N)");
+  }
+
   public void declareBlackjack(Player player) {
     System.out.println(player.getName() + " has BlackJack!");
   }

@@ -120,7 +120,7 @@ public class Game {
 
   public String hitOrStay(Player player) {
     Scanner scanner = new Scanner(System.in);
-    System.out.println(player.getName() + ": Would you like to take a card? (Y/N)");
+    viewer.offerCard(player);
     String answer = scanner.nextLine().toUpperCase();
     return answer;
   }
@@ -236,9 +236,7 @@ public class Game {
     if (handValue(dealer) > 21) {
       return true;
     }
-    else {
-      return false;
-    }
+   return false;
   }
 
   public void playerVsDealerBlackjack() {
@@ -252,16 +250,16 @@ public class Game {
 
   public boolean dealerBlackjack() {
     if (handValue(dealer) == 21 && dealer.handSize() == 2) {
-      viewer.declareDealerBlackjack();
-      playerVsDealerBlackjack();
       return true;
     }
-    else return false;
+    return false;
   }
 
 
   public void compareHands() {
     if (dealerBlackjack()) {
+      viewer.declareDealerBlackjack();
+      playerVsDealerBlackjack();
       return;
     }
     for (Player player : players) {
