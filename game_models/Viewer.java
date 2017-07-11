@@ -40,8 +40,8 @@ public class Viewer {
     System.out.println(player.getName() + " is bust and loses!");
   }
 
-  public void showNewDealerCard(Rank rank, Suit suit) {
-    System.out.println("Dealer draws the " + rank + " of " + suit);
+  public void showNewCard(Participant participant, Rank rank, Suit suit) {
+    System.out.println(participant.getName() + " draws the " + rank + " of " + suit);
   }
 
   public void declareDealerBust() {

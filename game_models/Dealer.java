@@ -16,16 +16,16 @@ public class Dealer extends Participant {
     return this.shoe;
   }
 
-  public void deal(Player player) {
+  public void deal(Participant participant) {
     Card card = this.shoe.getFirstCard();
-    player.getHand().addCard(card);
+    participant.getHand().addCard(card);
     this.shoe.remove(0);
   }
 
-  public void deal() {
-    Card card = this.shoe.getFirstCard();
-    this.hand.addCard(card);
-    this.shoe.remove(0);
-  }
+  // public void deal() {
+  //   Card card = this.shoe.getFirstCard();
+  //   this.hand.addCard(card);
+  //   this.shoe.remove(0);
+  // }
 
 }

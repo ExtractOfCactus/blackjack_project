@@ -91,7 +91,7 @@ public class Game {
 
   public void initialDeal() {
     dealRound();
-    this.dealer.deal();
+    this.dealer.deal(dealer);
     dealRound();
   }
 
@@ -102,13 +102,6 @@ public class Game {
     return false;
   }
 
-  // public boolean dealerBlackjack() {
-  //   if (handValue(dealer) == 21 && dealer.handSize() == 2) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
   public String hitOrStay(Player player) {
     Scanner scanner = new Scanner(System.in);
     viewer.offerCard(player);
@@ -116,22 +109,22 @@ public class Game {
     return answer;
   }
 
-  public void dealAndDisplay(Player player) {
-    this.dealer.deal(player);
-    int index = player.handSize() - 1;
-    Card card = player.getHand().getCards().get(index);
+  public void dealAndDisplay(Participant participant) {
+    dealer.deal(participant);
+    int index = participant.handSize() - 1;
+    Card card = participant.getHand().getCards().get(index);
     Rank rank = card.getRank();
     Suit suit = card.getSuit();
-    System.out.println(player.getName() + " draws the " + rank + " of " + suit);
+    viewer.showNewCard(participant, rank, suit);
   }
 
 
   public void playersPlay() {
     System.out.println(" ");
     Scanner scanner = new Scanner(System.in);
-    showDealerCards();
+    showCards(dealer);
     for (Player player : players) {
-      showPlayerCards(player);
+      showCards(player);
       if (!checkBlackjack(player)) {
         String answer = hitOrStay(player);
         while (answer.equals("Y") && handValue(player) < 21) {
@@ -165,29 +158,16 @@ public class Game {
   }
 
 
-  public void showPlayerCards(Player player) {
-      System.out.println(player.getName() + ":");
-      for (Card card : player.getHand().getCards()) {
+  public void showCards(Participant participant) {
+      System.out.println(participant.getName() + ":");
+      for (Card card : participant.getHand().getCards()) {
         Rank rank = card.getRank();
         Suit suit = card.getSuit();
         System.out.println(rank + " of " + suit);
       }
-      System.out.println(player.getName() + " has " + handValue(player));
+      System.out.println(participant.getName() + " has " + handValue(participant));
       System.out.println(" ");
   }
-
-
-
-  public void showDealerCards() {
-    System.out.println(dealer.getName() + ":");
-    for (Card card : this.dealer.getHand().getCards()) {
-      Rank rank = card.getRank();
-      Suit suit = card.getSuit();
-      System.out.println(rank + " of " + suit);
-    }
-    System.out.println(dealer.getName() + " has " + handValue(dealer));
-    System.out.println(" ");
-  } 
 
   public boolean noPlayersRemaining() {
     int cardCounter = 0;
@@ -207,12 +187,7 @@ public class Game {
       return;
     } 
     while (handValue(dealer) < 17) {
-      dealer.deal();
-      int index = dealer.handSize() - 1;
-      Card card = dealer.getHand().getCards().get(index);
-      Rank rank = card.getRank();
-      Suit suit = card.getSuit();
-      viewer.showNewDealerCard(rank, suit);
+      dealAndDisplay(dealer);
       if (handValue(dealer) > 21) {
         viewer.declareDealerBust();
       }
@@ -271,7 +246,7 @@ public class Game {
     populatePlayers();
     initialDeal();
     playersPlay();
-    showDealerCards();
+    showCards(dealer);
     dealerFinish();
     compareHands();
   }
