@@ -90,7 +90,7 @@ public class Game {
       String name = input.substring(0,1).toUpperCase() + input.substring(1);
       Player player = new Player(name);
       addPlayer(player);
-      System.out.println(player.getName() + " has joined the game");
+      System.out.println(player.getName() + " has joined the game. Add another player or type 'play' to begin: ");
       input = scanner.nextLine();
     }
   }
@@ -109,6 +109,13 @@ public class Game {
     dealRound();
     this.dealer.deal();
     dealRound();
+  }
+
+  public boolean playerBlackjack(Player player) {
+    if (player.handSize() == 2 && handValue(player) == 21){
+      return true;
+    }
+    return false;
   }
 
   public String hitOrStay(Player player) {
@@ -134,27 +141,32 @@ public class Game {
     showDealerCards();
     for (Player player : players) {
       showPlayerCards(player);
-      String answer = hitOrStay(player);
-      while (answer.equals("Y") && handValue(player) < 21) {
-        dealAndDisplay(player);
-        if (handValue(player) == 21 && player.handSize() == 2) {
-          Card dealerFirstCard = dealer.getHand().getCards().get(0);
-          if (rankValue(dealerFirstCard) < 10) {
-            viewer.blackjack(player);
+      if (!playerBlackjack(player)) {
+        String answer = hitOrStay(player);
+        while (answer.equals("Y") && handValue(player) < 21) {
+          dealAndDisplay(player);
+          if (handValue(player) == 21 && player.handSize() == 2) {
+            Card dealerFirstCard = dealer.getHand().getCards().get(0);
+            if (rankValue(dealerFirstCard) < 10) {
+              viewer.blackjack(player);
+            }
           }
+          if (handValue(player) == 21) {
+            viewer.score(player, handValue(player));
+            break;
+          }
+          if (handValue(player) > 21) {
+            viewer.playerBust(player);
+            break;
+          }
+          else {
+            viewer.score(player, handValue(player));
+          }
+          answer = scanner.nextLine().toUpperCase();
         }
-        if (handValue(player) == 21) {
-          viewer.score(player, handValue(player));
-          break;
-        }
-        if (handValue(player) > 21) {
-          viewer.playerBust(player);
-          break;
-        }
-        else {
-          viewer.score(player, handValue(player));
-        }
-        answer = scanner.nextLine().toUpperCase();
+      }
+      else {
+        viewer.declareBlackjack(player);
       }
       System.out.println(" ");
     }
