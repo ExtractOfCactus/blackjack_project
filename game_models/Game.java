@@ -39,22 +39,6 @@ public class Game {
     return rankValues.get(card.getRank());
   }
 
-  public int handValue(Participant participant) {
-      int total = 0;
-      int aceCounter = 0;
-      for (Card card : participant.getHand().getCards()) {
-        total += rankValue(card);
-        if (card.getRank() == Rank.ACE) {
-          aceCounter += 1;
-        }
-        if (total > 21 && aceCounter > 0) {
-          total -= 10;
-          aceCounter -= 1;
-        }
-      }
-      return total;
-    }
-
   public ArrayList<Player> getPlayers() {
     return this.players;
   }
@@ -64,16 +48,22 @@ public class Game {
   }
 
   public void populatePlayers() {
+    int groupSize = 0;
     Scanner scanner = new Scanner(System.in);
     viewer.addPlayerOrPlay();
     String input = scanner.nextLine();
-    while (!input.toLowerCase().equals("play") && this.players.size() < 4) {
+    while (!input.toLowerCase().equals("play")) {
       if (input.equals("")) {
         return;
       }
       String name = input.substring(0,1).toUpperCase() + input.substring(1);
       Player player = new Player(name);
       addPlayer(player);
+      groupSize += 1;
+      if (groupSize >= 3) {
+        viewer.tableFull(player);
+        break;
+      }
       viewer.confirmPlayerAdded(player);
       input = scanner.nextLine();
     }
@@ -95,6 +85,23 @@ public class Game {
     dealRound();
   }
 
+  public int handValue(Participant participant) {
+    int total = 0;
+    int aceCounter = 0;
+    for (Card card : participant.getHand().getCards()) {
+      total += rankValue(card);
+      if (card.getRank() == Rank.ACE) {
+        aceCounter += 1;
+      }
+      if (total > 21 && aceCounter > 0) {
+        total -= 10;
+        aceCounter -= 1;
+      }
+    }
+    return total;
+  }
+
+  
   public boolean checkBlackjack(Participant participant) {
     if (participant.handSize() == 2 && handValue(participant) == 21){
       return true;
@@ -163,7 +170,7 @@ public class Game {
     }
     viewer.score(participant, handValue(participant));
     viewer.lineBreak();
-      
+
   }
 
   public boolean noPlayersRemaining() {
@@ -199,7 +206,7 @@ public class Game {
     if (handValue(dealer) > 21) {
       return true;
     }
-   return false;
+    return false;
   }
 
   public void playerVsDealerBlackjack() {

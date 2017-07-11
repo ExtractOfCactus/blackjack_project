@@ -11,8 +11,12 @@ public class Viewer {
     System.out.println("Enter a new player name to join the game then type 'play' to begin: ");
   }
 
-  public void confirmPlayerAdded(Participant participant) {
-    System.out.println(participant.getName() + " has joined the game. Add another player or type 'play' to begin: ");
+  public void confirmPlayerAdded(Player player) {
+    System.out.println(player.getName() + " has joined the game. Add another player or type 'play' to begin: ");
+  }
+
+  public void tableFull(Player player) {
+    System.out.println(player.getName() +" has joined the game. The table is now full, so lets begin: ");
   }
 
   public void nameTitle(Participant participant) {
