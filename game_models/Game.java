@@ -39,10 +39,10 @@ public class Game {
     return rankValues.get(card.getRank());
   }
 
-  public int handValue(Player player) {
+  public int handValue(Participant participant) {
       int total = 0;
       int aceCounter = 0;
-      for (Card card : player.getHand().getCards()) {
+      for (Card card : participant.getHand().getCards()) {
         total += rankValue(card);
         if (card.getRank() == Rank.ACE) {
           aceCounter += 1;
@@ -54,22 +54,6 @@ public class Game {
       }
       return total;
     }
-
-  public int handValue(Dealer dealer) {
-    int total = 0;
-    int aceCounter = 0;
-    for (Card card : dealer.getHand().getCards()) {
-      total += rankValue(card);
-      if (card.getRank() == Rank.ACE) {
-        aceCounter += 1;
-      }
-      if (total > 21 && aceCounter > 0) {
-        total -= 10;
-        aceCounter -= 1;
-      }
-    }
-    return total;
-  }
 
   public ArrayList<Player> getPlayers() {
     return this.players;
@@ -111,12 +95,19 @@ public class Game {
     dealRound();
   }
 
-  public boolean playerBlackjack(Player player) {
-    if (player.handSize() == 2 && handValue(player) == 21){
+  public boolean checkBlackjack(Participant participant) {
+    if (participant.handSize() == 2 && handValue(participant) == 21){
       return true;
     }
     return false;
   }
+
+  // public boolean dealerBlackjack() {
+  //   if (handValue(dealer) == 21 && dealer.handSize() == 2) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   public String hitOrStay(Player player) {
     Scanner scanner = new Scanner(System.in);
@@ -141,11 +132,11 @@ public class Game {
     showDealerCards();
     for (Player player : players) {
       showPlayerCards(player);
-      if (!playerBlackjack(player)) {
+      if (!checkBlackjack(player)) {
         String answer = hitOrStay(player);
         while (answer.equals("Y") && handValue(player) < 21) {
           dealAndDisplay(player);
-          if (playerBlackjack(player)) {
+          if (checkBlackjack(player)) {
             Card dealerFirstCard = dealer.getHand().getCards().get(0);
             if (rankValue(dealerFirstCard) < 10) {
               viewer.blackjack(player);
@@ -241,29 +232,22 @@ public class Game {
 
   public void playerVsDealerBlackjack() {
     for (Player player : players) {
-      if (playerBlackjack(player)) {
+      if (checkBlackjack(player)) {
         viewer.standOff(player);
       }
       else viewer.playerLoses(player);
     }
   }
 
-  public boolean dealerBlackjack() {
-    if (handValue(dealer) == 21 && dealer.handSize() == 2) {
-      return true;
-    }
-    return false;
-  }
-
 
   public void compareHands() {
-    if (dealerBlackjack()) {
-      viewer.declareDealerBlackjack();
+    if (checkBlackjack(dealer)) {
+      viewer.declareBlackjack(dealer);
       playerVsDealerBlackjack();
       return;
     }
     for (Player player : players) {
-      if (playerBlackjack(player)) {
+      if (checkBlackjack(player)) {
         viewer.blackjack(player);
       }
       if (handValue(dealer) < 22 && (handValue(player) < 22 && player.handSize() != 0)) {
@@ -283,7 +267,6 @@ public class Game {
     }
   }
 
-
   public void run() {
     populatePlayers();
     initialDeal();
@@ -294,8 +277,3 @@ public class Game {
   }
 
 }
-//player blackjack during playersPlay() needs enacted. (Shows up at end. Might be fine.)
-//declare win on blackjack if dealer does not start with an ace or ten? Probably not needed...
-// definitely need to withdraw the option to take a card if player has blackjack
-
-

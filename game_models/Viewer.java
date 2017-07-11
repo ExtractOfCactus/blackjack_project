@@ -7,19 +7,15 @@ import java.util.Scanner;
 
 public class Viewer {
 
-  public void score(Player player, int handValue) {
+  public void score(Participant player, int handValue) {
     System.out.println(player.getName() + " has " + handValue);
-  }
-
-  public void score(Dealer dealer, int handValue) {
-    System.out.println(dealer.getName() + " has " + handValue);
   }
 
   public void offerCard(Player player) {
     System.out.println(player.getName() + ": Would you like to take a card? (Y/N)");
   }
 
-  public void declareBlackjack(Player player) {
+  public void declareBlackjack(Participant player) {
     System.out.println(player.getName() + " has BlackJack!");
   }
 
@@ -42,10 +38,6 @@ public class Viewer {
 
   public void playerBust(Player player) {
     System.out.println(player.getName() + " is bust and loses!");
-  }
-
-  public void declareDealerBlackjack() {
-    System.out.println("Dealer has BlackJack");
   }
 
   public void showNewDealerCard(Rank rank, Suit suit) {
