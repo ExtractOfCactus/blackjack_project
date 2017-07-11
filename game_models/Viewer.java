@@ -7,7 +7,11 @@ import java.util.Scanner;
 
 public class Viewer {
 
-  public void nameTitle() {
+  public void confirmPlayerAdded(Participant participant) {
+    System.out.println(participant.getName() + " has joined the game. Add another player or type 'play' to begin: ");
+  }
+
+  public void nameTitle(Participant participant) {
     System.out.println(participant.getName() + ":");
   }
 

@@ -74,7 +74,7 @@ public class Game {
       String name = input.substring(0,1).toUpperCase() + input.substring(1);
       Player player = new Player(name);
       addPlayer(player);
-      System.out.println(player.getName() + " has joined the game. Add another player or type 'play' to begin: ");
+      viewer.confirmPlayerAdded(player);
       input = scanner.nextLine();
     }
   }
@@ -144,16 +144,12 @@ public class Game {
             player.getHand().getCards().clear();
             break;
           }
-          else {
-            viewer.score(player, handValue(player));
-          }
+          else viewer.score(player, handValue(player));
           answer = scanner.nextLine().toUpperCase();
         }
       }
-      else {
-        viewer.declareBlackjack(player);
-      }
-      viewer.lineBreak;
+      else viewer.declareBlackjack(player);
+      viewer.lineBreak();
     }
   }
 
