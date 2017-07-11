@@ -48,7 +48,7 @@ public class Viewer {
     System.out.println("Dealer has bust!");
   }
 
-  // public void allBust() {
-  //   System.out.println("All players have bust!")
-  // }
+  public void allBust() {
+    System.out.println("All players have bust!");
+  }
 }

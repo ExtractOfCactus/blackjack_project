@@ -185,23 +185,23 @@ public class Game {
     System.out.println(" ");
   } 
 
-  // public boolean noPlayersRemaining() {
-  //   int cardCounter = 0
-  //   for (Player player : players) {
-  //     cardCounter += player.handSize();
-  //     if (cardCounter == 0) {
-  //       return true;
-  //     }
-  //   }
-  //   return false;
-  // }
+  public boolean noPlayersRemaining() {
+    int cardCounter = 0;
+    for (Player player : players) {
+      cardCounter += player.handSize();
+      if (cardCounter == 0) {
+        return true;
+      }
+    }
+    return false;
+  }
 
 
   public void dealerFinish() {
-    // if (noPlayersRemaining()) {
-    //   viewer.allBust();
-    //   return;
-    // } 
+    if (noPlayersRemaining()) {
+      viewer.allBust();
+      return;
+    } 
     while (handValue(dealer) < 17) {
       dealer.deal();
       int index = dealer.handSize() - 1;
