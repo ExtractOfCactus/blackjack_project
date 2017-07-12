@@ -2,7 +2,6 @@ package game_models;
 import java.util.ArrayList;
 import enums.*;
 import java.util.Collections;
-import behaviours.*;
 
 public class Shoe {
   private ArrayList<Card> deck;

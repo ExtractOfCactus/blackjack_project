@@ -2,19 +2,20 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import game_models.*;
 import enums.*;
-// import org.mockito.*;
-// import static org.mockito.Mockito.*;
 
 public class GameTest {
   Card card1;
   Player player1;
+  Viewer viewer;
   Game game;
 
   @Before
   public void before() {
+
     card1 = new Card(Rank.FOUR, Suit.HEARTS);
     player1 = new Player("Kirsty");
-    game = new Game();
+    viewer = new Viewer();
+    game = new Game(viewer);
   }
 
   @Test

@@ -1,7 +1,6 @@
 package game_models;
 import java.util.ArrayList;
 import java.util.Collections;
-import Behaviours.*;
 
 public class Dealer extends Participant {
   private Shoe shoe;
@@ -21,11 +20,5 @@ public class Dealer extends Participant {
     participant.getHand().addCard(card);
     this.shoe.remove(0);
   }
-
-  // public void deal() {
-  //   Card card = this.shoe.getFirstCard();
-  //   this.hand.addCard(card);
-  //   this.shoe.remove(0);
-  // }
 
 }

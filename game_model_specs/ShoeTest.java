@@ -27,13 +27,6 @@ public class ShoeTest {
     assertEquals(Suit.HEARTS, shoe.getFirstCard().getSuit());
   }
 
-  // @Test
-  // public void canSelectRandomCard() {
-  //   Card card = shoe.selectRandomCard();
-  //   assertEquals(6, card().value());
-  //   assertEquals(Suit.HEARTS, card.getSuit());
-  // }
-
   @Test
   public void canRemoveCard() {
     shoe.remove(1);

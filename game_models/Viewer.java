@@ -1,7 +1,6 @@
 package game_models;
 import java.util.ArrayList;
 import enums.*;
-import behaviours.*;
 import java.util.HashMap;
 import java.util.Scanner;
 

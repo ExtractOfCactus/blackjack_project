@@ -1,7 +1,6 @@
 package game_models;
-import behaviours.*;
 
-public class Participant implements Playable {
+public class Participant  {
   protected String name;
   protected Hand hand;
 
@@ -21,9 +20,5 @@ public class Participant implements Playable {
   public int handSize() {
     return this.hand.size();
   }
-
-  // public int handValue() {
-  //   return this.hand.handTotal();
-  // }
 
 }
