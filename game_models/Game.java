@@ -176,11 +176,11 @@ public class Game {
     int cardCounter = 0;
     for (Player player : players) {
       cardCounter += player.handSize();
-      if (cardCounter == 0) {
-        return true;
-      }
     }
-    return false;
+    if (cardCounter == 0) {
+      return true;
+    }
+    else return false;
   }
 
 
